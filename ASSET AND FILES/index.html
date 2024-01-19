@@ -1,0 +1,454 @@
+<!DOCTYPE html>
+<html lang="en">
+
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Employee Management System</title>
+    <link rel="icon" href="asset/management.png">
+    <link rel="stylesheet" href="https://cdn.jsdelivr.net/npm/bootstrap-icons@1.11.1/font/bootstrap-icons.css">
+    <link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/6.4.2/css/all.min.css" integrity="sha512-z3gLpd7yknf1YoNbCzqRKc4qyor8gaKU1qmn+CShxbuBusANI9QpRohGBreCFkKxLhei6S9CQXFEbbKuqLg0DA==" crossorigin="anonymous" referrerpolicy="no-referrer" />
+    <link href="https://cdn.jsdelivr.net/npm/bootstrap@5.3.2/dist/css/bootstrap.min.css" rel="stylesheet" integrity="sha384-T3c6CoIi6uLrA9TneNEoa7RxnatzjcDSCmG1MXxSR1GAsXEV/Dwwykc2MPK8M2HN" crossorigin="anonymous">
+    <link rel="stylesheet" href="style.css">
+</head>
+
+<body>
+    <section class="conTainer" id="conTainer">
+        <div class="app-section">
+            <!-- Side bar section -->
+            <div class="side-bar-section">
+                <div class="nav-links">
+                    <div class="sidebar-head">Employee</div>
+                    <div class="sidebarhead">Management</div>
+                </div>
+            </div>
+
+            <!-- nav links -->
+
+            <div class="nav-bar-Powered">
+                <ul class="navbars">
+                    <li><a href="#"><i class="fa-solid fa-house"></i> <span class="navrbars-text">Dashboard</span></a>
+                    </li>
+                    <li><a href=""><i class="fa-solid fa-chart-simple"></i><span
+                                class="navrbars-text">Employees</span></a></li>
+                    <li><a href=""><i class="fa-solid fa-user"></i><span class="navrbars-text">My Profile</span></a>
+                    </li>
+                    <li><a href=""><i class="fa-solid fa-lock"></i><span class="navrbars-text">Logout</span></a></li>
+
+                </ul>
+            </div>
+            <!-- powered bye area -->
+            <div class="sidebar-copyright">
+                <div class="Powered">Powered by</div>
+                <img src="asset/logo.png" alt="stackup learining">
+            </div>
+        </div>
+        <div class="fullSection">
+
+
+            <!-- main content  -->
+            <div class="main-content">
+                <!-- main header text -->
+                <div class="banner-header">
+                    <div class="banner-text">
+                        <div class="head-text">Dashboard / Employees</div>
+                        <div class="main-head">Employees</div>
+                    </div>
+
+                    <!-- seacrch and profile -->
+
+                    <div class="search-profile">
+                        <div class="search-bar">
+                            <i class="fa-solid fa-magnifying-glass"></i>
+                            <input type="search" id="searchUser" onkeyup="searchUser()" placeholder="search">
+                        </div>
+                        <i class="fa-regular fa-bell"></i>
+                        <img src="asset/Avatar Style 6.png" alt="">
+                    </div>
+
+
+                </div>
+
+                <div class="table-content" id="remover">
+
+                    <div class="table-section">
+
+                        <div class="header-text-count">
+
+                            <div class="table-head">Employees List</div>
+                            <select class="noPage" id="employeePerpage">
+                                <option value="5" selected>5</option>
+                                <option value="6">6</option>
+                                <option value="7">7</option>
+                                <option value="8">8</option>
+                                <option value="9">9</option>
+                                <option value="10">10</option>
+                            </select>
+
+                            <div class="pageCount">of 10</div>
+
+                        </div>
+
+                        <div class="banner-btn">
+                            <button onclick="openForm()" class="filled-btn">Add Employee</button>
+                        </div>
+                    </div>
+
+                    <!-- TABLE DATA  -->
+
+                    <div class="employtable-data">
+
+                        <table class="table">
+                            <thead>
+                                <tr>
+                                    <th scope="col" class="tableHader-Icon">Sl.No</th>
+                                    <th scope="col" class="tableHader-Icon">Name</th>
+                                    <th scope="col" class="tableHader-Icon">Email</th>
+                                    <th scope="col" class="tableHader-Icon">Phone</th>
+                                    <th scope="col" class="tableHader-Icon">Gender</th>
+                                    <th scope="col" class="tableHader-Icon">DOB</th>
+                                    <th scope="col" class="tableHader-Icon">Country</th>
+                                    <th scope="col"></th>
+                                </tr>
+                            </thead>
+                            <tbody id="table-body"></tbody>
+                        </table>
+                    </div>
+                </div>
+            </div>
+
+            <!-- pageination -->
+
+            <div class="paginationeSction">
+                <ul class="paginationbtn" id="paginationList">
+
+                </ul>
+            </div>
+
+            <!-- FOTTER SECTION -->
+
+            <footer class="copyright">
+                <div class="copyright-content">
+                    <div class="cp-text">&copy; 2024 All Rights Reserved.<strong>Stackup</strong></div>
+                    <div class="Terms">
+                        <div class="tems-text">Terms of Use</div>
+                        <div class="Privacy">Privacy Policy</div>
+                    </div>
+                </div>
+            </footer>
+        </div>
+
+
+        <div class="row ">
+            <div class="col-lg-6 form-background form-box col-md-12 " id="form-box">
+
+                <div class="form-top">
+                    <h3 id="changeform" class="form">Add Employee</h3>
+
+                    <button onclick="closeForm()" class="close-button form">&times;</button>
+                </div>
+
+                <!-- upload box start from here -->
+
+                <label for="imageuploadbox" class="upload" id="imageuploding-box">
+                    <i class="bi bi-upload"></i>
+                    <h5 class="upload-box-text">Upload Image</h5>
+                    <p class="Upload-contents">PNG,JPG Files are allowed</p>
+                    <input class="form-control" type="file" id="imageuploadbox">
+                </label>
+
+
+
+                <!-- Edit employee profile image -->
+
+                <div class="profilepicbox" id="previewimage">
+                    <div class="picture-box">
+                        <img id="imagefile" src="/" alt="" class="get-profile-pic">
+                    </div>
+                    <label for="image-change" class="image-changing-btn"> change
+                        <input type="file" name="" id="image-change">
+                    </label>
+                </div>
+
+
+
+
+
+                <!-- FORM INPUT FEILDS (start)-->
+
+
+
+                <form id="FormClearing">
+
+
+                    <div class="row pt-4">
+
+                        <div class="col-lg-4 col-md-12">
+                            <label for="exampleInputEmail1" class="form-label ">Salutation</label>
+                            <select class="form-select form-select-lg p-3" aria-label="Default select example"
+                                id="salutation">
+                                <option selected>Selection</option>
+                                <option value="Mr">Mr</option>
+                                <option value="Ms">Ms</option>
+                                <option value="Mrs">Mrs</option>
+                            </select>
+                        </div>
+
+                        <div class="col-lg-4 col-md-6">
+                            <label for="first-name" class="form-label  fondspace">First Name</label>
+                            <input id="firstName" class="form-control form-control-lg" type="text"
+                                placeholder="First Name" aria-label=".form-control-sm example">
+                        </div>
+
+                        <div class="col-lg-4 col-md-6">
+                            <label for="last-name" class="form-label  important fondspace">Last Name</label>
+                            <input id="lastName" class="form-control form-control-lg" type="text"
+                                placeholder="Last Name" aria-label=".form-control-sm example">
+
+                        </div>
+                    </div>
+
+
+
+
+
+                    <div class="row pt-4">
+                        <div class="col-lg-6 col-sm-12">
+                            <label for="exampleInputEmail1" class="form-label  important">Email address</label>
+                            <input type="email" class="form-control form-control-lg" id="email"
+                                placeholder="Email address" aria-describedby="emailHelp">
+                        </div>
+                        <div class="col-lg-6 col-sm-12">
+                            <label for="last-name" class="form-label  important fondspace">Mobile Number</label>
+                            <input class="form-control form-control-lg" type="tel" placeholder="enter mobile number"
+                                aria-label=".form-control-sm example" id="phone" required>
+                        </div>
+                    </div>
+
+                    <div class="row pt-4">
+                        <div class="col-lg-6 col-sm-12">
+                            <label for="username" class="form-label  important">username</label>
+                            <input type="text" class="form-control form-control-lg" id="username" placeholder="username"
+                                aria-describedby="emailHelp" autocomplete="username">
+                        </div>
+                        <div class="col-lg-6 col-sm-12">
+                            <label for="last-name" class="form-label  important fondspace">password</label>
+
+                            <input class="form-control form-control-lg" type="password" placeholder="password"
+                                aria-label=".form-control-sm example" id="password" autocomplete="current-password">
+
+                        </div>
+                    </div>
+
+                    <div class="row pt-4 align-items-center">
+                        <div class="col-lg-5 col-sm-12">
+                            <label for="last-name" class="form-label important ">Date of Birth</label>
+                            <input class="form-control form-control-lg" type="date" placeholder=""
+                                aria-label=".form-control-sm example" id="dob">
+                        </div>
+                        <div class="col-lg-6 col-sm-12">
+                            <label for="last-name" class="form-label  important fondspace">Gender</label>
+                            <div class="row">
+                                <div class="form-check col-4 ms-3">
+
+                                    <input class="form-check-input" type="radio" name="flexRadioDefault" id="Male"
+                                        value="male">
+                                    <label class="form-check-label" for="flexRadioDefault1">
+                                        Male
+                                    </label>
+                                </div>
+
+                                <div class="form-check col-6">
+                                    <input class="form-check-input" type="radio" name="flexRadioDefault" id="Female"
+                                        value="female">
+                                    <label class="form-check-label" for="flexRadioDefault2">
+                                        Female
+                                    </label>
+                                </div>
+                            </div>
+                        </div>
+
+                    </div>
+
+                    <div class="row pt-4">
+
+                        <div class="col-12">
+                            <label for="Qualifications" class="form-label  important">Qualifications</label>
+                            <input class="form-control form-control-lg" type="text" placeholder="Qualifications"
+                                aria-label=".form-control-sm example" id="qualifications">
+                        </div>
+                    </div>
+
+
+                    <div class="row pt-4">
+
+                        <div class="col-12">
+                            <label for="last-name" class="form-label  ">Address</label>
+                            <input class="form-control form-control-lg" type="text" placeholder="enter Address"
+                                aria-label=".form-control-sm example" id="address">
+                        </div>
+                    </div>
+
+                    <div class="row pt-4">
+                        <div class="col-lg-6 col-sm-12">
+                            <label for="exampleInputEmail1" class="form-label  important">Country</label>
+                            <select class="form-select form-select-lg p-3" aria-label="Default select example"
+                                id="country">
+                                <option selected>select country</option>
+                                <option value="INDIA">INDIA</option>
+                                <option value="USA">USA</option>
+                                <option value="CANADA">CANADA</option>
+                            </select>
+
+                        </div>
+                        <div class="col-lg-6 col-sm-12">
+                            <label for="exampleInputEmail1" class="form-label fondspace">State</label>
+                            <select class="form-select form-select-lg p-3" aria-label="Default select example"
+                                id="state">
+                                <option selected>select state</option>
+                                <option value="KERALA">KERALA</option>
+                                <option value="CALIFORNIA">CALIFORNIA</option>
+                                <option value="ALBERTA">ALBERTA</option>
+                            </select>
+                        </div>
+                    </div>
+
+
+
+
+                    <div class="row pt-4">
+                        <div class="col-lg-6">
+                            <label for="last-name" class="form-label ">City</label>
+                            <input class="form-control form-control-lg" type="text" placeholder="enter city"
+                                aria-label=".form-control-sm example" id="city">
+
+                        </div>
+                        <div class="col-lg-6">
+                            <label for="last-name" class="form-label  fondspace">Pin/Zip</label>
+                            <input class="form-control form-control-lg" type="number" placeholder="enter zip/pin"
+                                aria-label=".form-control-sm example" id="pinZip">
+                        </div>
+                    </div>
+                    <section class="button">
+                        <div class=" d-flex justify-content-end form-background login-btn w-100">
+
+                            <button onclick="closeForm()" class="btn btn-light">Cancel</button>
+                            <button class="btn btn-primary" id="adduserbtn">Add Employee</button>
+                            <button type="button" id="changeemployee" class="btn btn-primary">Save changes</button>
+                    </section>
+                </form>
+
+
+                <!-- FORM INPUT FEILDS (start)-->
+
+
+            </div>
+        </div>
+        </div>
+
+
+
+
+
+
+        <div id="overlay"></div> <!-- overlays -->
+        <div id="invisible"></div><!-- overlays -->
+
+
+
+
+        <!-- Delete section (start) -->
+
+        <div id="deletebox" class="del-box form-background col-lg-5">
+            <div class="alert">
+                <div class="alert-text">Delete Employee</div>
+                <button onclick="closealert()" class="close-button form">&times;</button>
+            </div>
+            <div class="delete-btn-text">Are you want to delete employe?</div>
+            <div id="deleteactionbtns" class="cancel-dele-btns d-flex justify-content-end">
+                <button onclick="closealert()" id="alert-box-cancel" class="btn-light cancel-btn">Cancel</button>
+                <button id="alert-box-delete"  class="filled-btn delete-btn">Delete</button>
+            </div>
+        </div>
+
+        <!-- Delete section (end) -->
+
+
+
+
+
+
+
+        <!-- Toast Notification  (start)-->
+
+
+        <!-- ADD EMPLOYEE TOASTBOX -->
+
+        <div id="addEmployeeToast">
+            <div class="layer">
+                <div class="layer1">
+                    <div class="addSnacknotification">
+                        <i class="fas fa-check-circle"></i>
+                        <div class="addToastMainText">Success</div>
+                    </div>
+                    <div class="addToast-content">
+                        <div class="addToast-text">Success fully Added Employee.... </div>
+                    </div>
+                </div>
+                <button class="layer2" onclick="addemployeeCloseToast()">
+                    <i class="fa-solid fa-circle-xmark"></i>
+                </button>
+            </div>
+        </div>
+
+        <!-- DELETE EMPLOYEEE TOASTBOX -->
+
+
+        <div id="deleteEmployeeToast">
+            <div class="d-layer">
+                <div class="d-layer1">
+                    <div class="deleteSnacknotification">
+                        <i class="fa-solid fa-trash"></i>
+                        <div class="deleteToastMainText">Success</div>
+                    </div>
+                    <div class="deleteToast-content">
+                        <div class="deleteToast-text">Success fully Deleted Employee.... </div>
+                    </div>
+                </div>
+                <button class="d-layer2" onclick="deleteEmployeeToastClose()">
+                    <i class="fa-solid fa-circle-xmark"></i>
+                </button>
+            </div>
+        </div>
+
+        <!-- EDIT EMPLOYEE TOASTBOX -->
+
+        <div id="editEmployeeToast">
+            <div class="e-layer">
+                <div class="e-layer1">
+                    <div class="editSnacknotification">
+                        <i class="fa-solid fa-user-pen"></i>
+                        <div class="editToastMainText">Success</div>
+                    </div>
+                    <div class="editToast-content">
+                        <div class="editToast-text">Success fully Edited Employee.... </div>
+                    </div>
+                </div>
+                <button class="e-layer2" onclick="editEmployeeToastClose()">
+                    <i class="fa-solid fa-circle-xmark"></i>
+                </button>
+            </div>
+        </div>
+
+
+        <!-- Toast Notification  (end)-->
+
+
+
+    </section>
+
+    <script src="main.js"></script>
+
+</body>
+
+</html>
