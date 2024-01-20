@@ -306,6 +306,9 @@ async function getUser() {
 }
 
 
+
+
+
 // function for posting Employee data to the server
 
 let employeeDpImage = document.getElementById("image-change");
@@ -337,6 +340,9 @@ userImageInputbox.addEventListener("change", function () {
     userImage.src = URL.createObjectURL(file);
   }
 });
+
+
+
 
 
 
@@ -419,12 +425,12 @@ async function editing() {
 
 
 
-// EMPLOYEE DELETE (START)
 
 const deletebtns = document.getElementById("deletebox");
 const deletes = document.getElementById("alert-box-delete");
 
 
+// EMPLOYEE DELETE (START)
 
 
 function deleteData(id) {
@@ -449,6 +455,7 @@ function deleteData(id) {
 }
 
 
+
 // Function to close the alert and hide elements
 
 function closealert() {
@@ -465,9 +472,6 @@ document.getElementById('overlay').addEventListener("click",function(){
 
 
 // EMPLOYEE DELETE (END)
-
-
-
 
 
 
