@@ -47,5 +47,5 @@ node ./index.js
 | Screenshots |
 |-------------|
 |<img src="https://github.com/elliotalien/Employee-Management-System/blob/main/images/first%20image.png">|
-|-------------|
+|             |
 |<img src="https://github.com/elliotalien/Employee-Management-System/blob/main/images/second%20image.png">|
