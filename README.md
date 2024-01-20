@@ -9,7 +9,7 @@ The Employee Management System is a Node.js-based application designed to provid
 - Employee View Details: Access detailed information about each employee.
 - CRUD Operations: Perform Create, Read, Update, and Delete operations on employee records.
 - Technolo
-- employee searchng 🔎
+- Employee searchng 🔎
 ## Technologies Used
 Node.js: Backend development platform.
 
