@@ -22,3 +22,23 @@ Node.js: Backend development platform.
 git clone https://github.com/elliotalien/Employee-Management-System.git
 
 ```
+
+2. Navigate to the project directory:
+
+```
+cd Employee-Management-System
+
+```
+
+3. Install dependencies:
+
+```
+npm install
+```
+
+4. Run the API
+
+```
+node ./index.js
+```
+
