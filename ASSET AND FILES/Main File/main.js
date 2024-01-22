@@ -5,15 +5,15 @@ async function employeeGet() {
     const data = await fetch("http://localhost:3000/employees");
     const objectData = await data.json();
 
-    // getEmployee(objectData); 
-
     allemployee = objectData;
     console.log(objectData)
   
   } catch (error) {
     console.log(error);
   }
+
   pagination(allemployee);
+
 }
 
 employeeGet();
@@ -797,7 +797,8 @@ function renderPagination() {
 }
 
 // Function to update the active page
-function updateActivePage() {
+
+function updateActivePage() { 
   var paginationList = document.getElementById("paginationList");
   var listItems = paginationList.getElementsByTagName("li");
 

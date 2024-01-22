@@ -43,7 +43,9 @@ li {
     list-style: none;
 }
 
-
+img {
+    object-fit: cover;
+}
 
 /* Container Styles */
 .conTainer {
