@@ -6,7 +6,6 @@ async function employeeGet() {
     const objectData = await data.json();
 
     allemployee = objectData;
-    console.log(objectData)
   
   } catch (error) {
     console.log(error);
@@ -100,12 +99,18 @@ let  overlay = document.getElementById("overlay");
   addemployeeCloseToast(); // Add employee toast box
 });
 
+let elements = document.getElementsByClassName("employtable-data");
+
 function openForm() {
 
   document.getElementById("previewimage").style.display = "none";
   document.getElementById("imageuploding-box").style = "block";
 
   dataRemove();// data removing function
+
+  elements[0].style.height = "100vh";
+
+
 
   submitFormOpen.classList.add("active");
   overlay.classList.add("active");
@@ -114,6 +119,10 @@ function openForm() {
 function closeForm() {
   submitFormOpen.classList.remove("active");
   overlay.classList.remove("active");
+ 
+  elements[0].style.height = "";
+
+ 
   
 }
 
@@ -546,53 +555,37 @@ async function addImage() {
 // FORM VALIDATION (START)
 
 
-function validateField(inputId, errorMessage, requiredMessage) {
-  let inputField = document.getElementById(inputId);
 
-  // for user type the input field remove required msg
-  inputField.addEventListener('input', () => {
-    inputField.previousElementSibling.classList.remove('required');
-    inputField.style.border = "1px solid #E6E8EB";
-    inputField.previousElementSibling.innerHTML = errorMessage;
-    inputField.previousElementSibling.style.color = "#2B3674";
-  });
+// Separate function for gender validation
+function updateGenderValidation() {
+  const maleRadio = document.getElementById('Male');
+  const femaleRadio = document.getElementById('Female');
+  const genderErrorMessageElement = document.getElementById('gender-error');
 
-  let inputValue = inputField.value;
+  if (maleRadio.checked || femaleRadio.checked) {
+    genderErrorMessageElement.classList.remove('required');
+    genderErrorMessageElement.innerHTML = '';
+  }
+}
 
-  if (!inputValue) {
-    // Highlight required message 
-    inputField.previousElementSibling.classList.add('required');
-    inputField.style.border = "1px solid red";
-    inputField.focus();
-    inputField.previousElementSibling.innerHTML = requiredMessage;
-    inputField.previousElementSibling.style.color = "red";
-    return false;
-  } else if (inputField.type === 'email' && !isValidEmail(inputValue)) {
-    // Email validation
-    inputField.previousElementSibling.classList.add('required');
-    inputField.style.border = "1px solid red";
-    inputField.focus();
-    inputField.previousElementSibling.innerHTML = 'Invalid email format';
-    inputField.previousElementSibling.style.color = "red";
-    return false;
-  } else if (inputField.type === 'tel' && !validatePhone(inputValue)) {
-    // Phone number validation
-    inputField.previousElementSibling.classList.add('required');
-    inputField.style.border = "1px solid red";
-    inputField.focus();
-    inputField.previousElementSibling.innerHTML = 'Invalid phone number format';
-    inputField.previousElementSibling.style.color = "red";
+function validateGender() {
+  const maleRadio = document.getElementById('Male');
+  const femaleRadio = document.getElementById('Female');
+  const genderErrorMessageElement = document.getElementById('gender-error');
+
+  maleRadio.addEventListener('click', updateGenderValidation);
+  femaleRadio.addEventListener('click', updateGenderValidation);
+
+  if (!maleRadio.checked && !femaleRadio.checked) {
+    genderErrorMessageElement.classList.add('required');
+    genderErrorMessageElement.innerHTML = 'Please select a gender';
+    genderErrorMessageElement.style.color = 'red';
     return false;
   } else {
-    // Remove required styling
-    inputField.previousElementSibling.classList.remove('required');
-    inputField.style.border = "1px solid #E6E8EB";
-    inputField.previousElementSibling.innerHTML = errorMessage;
-    inputField.previousElementSibling.style.color = "#2B3674";
+    genderErrorMessageElement.classList.remove('required');
+    genderErrorMessageElement.innerHTML = '';
     return true;
   }
-
-  
 }
 
 // Email validation function
@@ -607,41 +600,88 @@ function validatePhone(phone) {
   return phoneRegex.test(phone);
 }
 
+function validateField(inputId, errorMessage, requiredMessage) {
+  let inputField = document.getElementById(inputId);
+  let errorMessageElement = document.getElementById(`${inputId}-error`);
 
+  //  remove the required message
+  inputField.addEventListener('input', () => {
+    errorMessageElement.classList.remove('required');
+    inputField.style.border = "1px solid #E6E8EB";
+    errorMessageElement.innerHTML = errorMessage;
+    errorMessageElement.style.color = "#2B3674";
+  });
 
+  let inputValue = inputField.value;
 
+  if (!inputValue) {
+    // Highlight the required message 
+    errorMessageElement.classList.add('required');
+    inputField.style.border = "1px solid red";
+    inputField.focus();
+    errorMessageElement.innerHTML = requiredMessage;
+    errorMessageElement.style.color = "red";
+    return false;
+  } else if (inputField.type === 'email' && !isValidEmail(inputValue)) {
+    // Email validation
+    errorMessageElement.classList.add('required');
+    inputField.style.border = "1px solid red";
+    inputField.focus();
+    errorMessageElement.innerHTML = 'Invalid email format';
+    errorMessageElement.style.color = "red";
+    return false;
+  } else if (inputField.type === 'tel' && !validatePhone(inputValue)) {
+    // Phone number validation
+    errorMessageElement.classList.add('required');
+    inputField.style.border = "1px solid red";
+    inputField.focus();
+    errorMessageElement.innerHTML = 'Invalid phone number format';
+    errorMessageElement.style.color = "red";
+    return false;
+  } else {
+    // Remove required styling
+    errorMessageElement.classList.remove('required');
+    inputField.style.border = "1px solid #E6E8EB";
+    errorMessageElement.innerHTML = errorMessage;
+    errorMessageElement.style.color = "#2B3674";
+    return true;
+  }
+}
 
-function formValidation()  {
+function formValidation() {
   const fields = [
-        { id: 'salutation', message: 'Salutation', requiredMessage: 'Salutation is required' },
-        { id: 'firstName', message: 'First Name', requiredMessage: 'First Name is required' },
-        { id: 'lastName', message: 'Last Name', requiredMessage: 'Last Name is required' },
-        { id: 'email', message: 'Email', requiredMessage: 'Email is required' },
-        { id: 'phone', message: 'Mobile Number', requiredMessage: 'Mobile Number is required' },
-        { id: 'username', message: 'Username', requiredMessage: 'Username is required' },
-        { id: 'password', message: 'Password', requiredMessage: 'Password is required' },
-        { id: 'dob', message: 'Date of Birth', requiredMessage: 'Date of Birth is required' },
-        { id: 'qualifications', message: 'Qualification', requiredMessage: 'Qualification is required' },
-        { id: 'address', message: 'Address', requiredMessage: 'Address is required' },
-        { id: 'country', message: 'Country', requiredMessage: 'Country is required' },
-        { id: 'state', message: 'State', requiredMessage: 'State is required' },
-        { id: 'city', message: 'City', requiredMessage: 'City is required' },
-        { id: 'pinZip', message: 'Pin/Zip', requiredMessage: 'Pin/Zip is required' }
+    { id: 'salutation', message: '', requiredMessage: 'Salutation is required' },
+    { id: 'firstName', message: '', requiredMessage: 'First Name is required' },
+    { id: 'lastName', message: '', requiredMessage: 'Last Name is required' },
+    { id: 'email', message: '', requiredMessage: 'Email is required' },
+    { id: 'phone', message: '', requiredMessage: 'Mobile Number is required' },
+    { id: 'username', message: '', requiredMessage: 'Username is required' },
+    { id: 'password', message: '', requiredMessage: 'Password is required' },
+    { id: 'dob', message: '', requiredMessage: 'Date of Birth is required' },
+    { id: 'qualifications', message: '', requiredMessage: 'Qualification is required' },
+    { id: 'address', message: '', requiredMessage: 'Address is required' },
+    { id: 'country', message: '', requiredMessage: 'Country is required' },
+    { id: 'state', message: '', requiredMessage: 'State is required' },
+    { id: 'city', message: '', requiredMessage: 'City is required' },
+    { id: 'pinZip', message: '', requiredMessage: 'Pin/Zip is required' },
+    { id: 'gender', message: '', requiredMessage: 'Please select a gender' },
   ];
 
   let isFormValid = true;
 
   for (let field of fields) {
-    if (!validateField(field.id, field.message, field.requiredMessage)) {
+    if (field.id === 'gender') {
+      if (!validateGender()) {
+        isFormValid = false;
+      }
+    } else if (!validateField(field.id, field.message, field.requiredMessage)) {
       isFormValid = false;
     }
   }
-
   return isFormValid;
 }
 
-
-// reset all required fields
+// Reset all required fields
 
 function resetFields() {
   const fields = [
@@ -658,43 +698,57 @@ function resetFields() {
     { id: 'country', message: 'Country', requiredMessage: 'Country is required' },
     { id: 'state', message: 'State', requiredMessage: 'State is required' },
     { id: 'city', message: 'City', requiredMessage: 'City is required' },
-    { id: 'pinZip', message: 'Pin/Zip', requiredMessage: 'Pin/Zip is required' }
+    { id: 'pinZip', message: 'Pin/Zip', requiredMessage: 'Pin/Zip is required' },
   ];
 
   for (let field of fields) {
     const inputField = document.getElementById(field.id);
-    const label = inputField.previousElementSibling;
-    inputField.style.border = "1px solid #E6E8EB";
-    label.innerHTML = field.message;
-    label.style.color = "#2B3674";
-    label.classList.remove('required');
-  }
-}
+    const errorMessageElement = document.getElementById(`${field.id}-error`);
 
+    if (inputField) {
+      inputField.style.border = "1px solid #E6E8EB";
+
+      const label = inputField.previousElementSibling;
+      if (label) {
+        label.innerHTML = field.message;
+        label.style.color = "#2B3674";
+      }
+
+      if (errorMessageElement) {
+        errorMessageElement.innerHTML = '';  
+        errorMessageElement.classList.remove('required');
+      }
+    }
+  }
+
+  // Reset gender validation
+  const maleRadio = document.getElementById('Male');
+  const femaleRadio = document.getElementById('Female');
+  const genderErrorMessageElement = document.getElementById('gender-error');
+
+  genderErrorMessageElement.classList.remove('required');
+  genderErrorMessageElement.innerHTML = '';
+}
 
 document.getElementById("adduserbtn").addEventListener('click', function (e) {
   e.preventDefault();
-  formValidation();
   if (formValidation()) {
-    addemployeeOpenToast();// ADD employee toast box
+    addemployeeOpenToast(); // ADD employee toast box
     closeForm(); // FORM close function
-    postuser();// POSTING employee to (server)
-    overlay.classList.add("active");// ( overlay)
+    postuser(); // POSTING employee to (server)
+    overlay.classList.add("active"); // ( overlay)
   }
 });
 
 document.getElementById("changeemployee").addEventListener('click', function (e) {
   e.preventDefault();
-  formValidation();
   if (formValidation()) {
     editEmployeeToastOpen(); // Edit employee toast box
-    closeForm();// FORM close function
-    editing();// PUT employee to (server)
-    overlay.classList.add("active");// ( overlay)
+    closeForm(); // FORM close function
+    editing(); // PUT employee to (server)
+    overlay.classList.add("active"); // ( overlay)
   }
 });
-
-
 
 // clearing required message clearing
 

@@ -192,19 +192,21 @@
                                 <option value="Ms">Ms</option>
                                 <option value="Mrs">Mrs</option>
                             </select>
+                            <div class="error-message" id="salutation-error"></div>
                         </div>
 
                         <div class="col-lg-4 col-md-6">
                             <label for="first-name" class="form-label  fondspace">First Name</label>
                             <input id="firstName" class="form-control form-control-lg" type="text"
                                 placeholder="First Name" aria-label=".form-control-sm example">
+                                <div class="error-message" id="firstName-error"></div>
                         </div>
 
                         <div class="col-lg-4 col-md-6">
-                            <label for="last-name" class="form-label  important fondspace">Last Name</label>
+                            <label for="last-name" class="form-label   fondspace">Last Name</label>
                             <input id="lastName" class="form-control form-control-lg" type="text"
                                 placeholder="Last Name" aria-label=".form-control-sm example">
-
+                                <div class="error-message" id="lastName-error"></div>
                         </div>
                     </div>
 
@@ -214,68 +216,75 @@
 
                     <div class="row pt-4">
                         <div class="col-lg-6 col-sm-12">
-                            <label for="exampleInputEmail1" class="form-label  important">Email address</label>
+                            <label for="exampleInputEmail1" class="form-label  ">Email address</label>
                             <input type="email" class="form-control form-control-lg" id="email"
                                 placeholder="Email address" aria-describedby="emailHelp">
+                                <div class="error-message" id="email-error"></div>
                         </div>
+
+
                         <div class="col-lg-6 col-sm-12">
-                            <label for="last-name" class="form-label  important fondspace">Mobile Number</label>
+                            <label for="last-name" class="form-label   fondspace">Mobile Number</label>
                             <input class="form-control form-control-lg" type="tel" placeholder="enter mobile number"
                                 aria-label=".form-control-sm example" id="phone" required>
+                                <div class="error-message" id="phone-error"></div>
                         </div>
                     </div>
 
+
+
                     <div class="row pt-4">
                         <div class="col-lg-6 col-sm-12">
-                            <label for="username" class="form-label  important">username</label>
+                            <label for="username" class="form-label  ">username</label>
                             <input type="text" class="form-control form-control-lg" id="username" placeholder="username"
                                 aria-describedby="emailHelp" autocomplete="username">
+                                <div class="error-message" id="username-error"></div>
                         </div>
+
+
+
                         <div class="col-lg-6 col-sm-12">
-                            <label for="last-name" class="form-label  important fondspace">password</label>
+                            <label for="last-name" class="form-label   fondspace">password</label>
 
                             <input class="form-control form-control-lg" type="password" placeholder="password"
                                 aria-label=".form-control-sm example" id="password" autocomplete="current-password">
-
+                                <div class="error-message" id="password-error"></div>
                         </div>
                     </div>
 
                     <div class="row pt-4 align-items-center">
                         <div class="col-lg-5 col-sm-12">
-                            <label for="last-name" class="form-label important ">Date of Birth</label>
+                            <label for="last-name" class="form-label  ">Date of Birth</label>
                             <input class="form-control form-control-lg" type="date" placeholder=""
                                 aria-label=".form-control-sm example" id="dob">
+                                <div class="error-message" id="dob-error"></div>
                         </div>
+
                         <div class="col-lg-6 col-sm-12">
-                            <label for="last-name" class="form-label  important fondspace">Gender</label>
+                            <label for="gender" class="form-label fondspace">Gender</label>
                             <div class="row">
-                                <div class="form-check col-4 ms-3">
-
-                                    <input class="form-check-input" type="radio" name="flexRadioDefault" id="Male"
-                                        value="male">
-                                    <label class="form-check-label" for="flexRadioDefault1">
-                                        Male
-                                    </label>
-                                </div>
-
-                                <div class="form-check col-6">
-                                    <input class="form-check-input" type="radio" name="flexRadioDefault" id="Female"
-                                        value="female">
-                                    <label class="form-check-label" for="flexRadioDefault2">
-                                        Female
-                                    </label>
-                                </div>
+                              <div class="form-check col-4 ms-3">
+                                <input class="form-check-input" type="radio" name="gender" id="Male" value="Male">
+                                <label class="form-check-label" for="Male">Male</label>
+                              </div>
+                              <div class="form-check col-6">
+                                <input class="form-check-input" type="radio" name="gender" id="Female" value="Female">
+                                <label class="form-check-label" for="Female">Female</label>
+                              </div> 
                             </div>
-                        </div>
+                            <div class="error-message" id="gender-error"></div>
+                          </div>
+                          
 
                     </div>
-
+ 
                     <div class="row pt-4">
 
                         <div class="col-12">
-                            <label for="Qualifications" class="form-label  important">Qualifications</label>
+                            <label for="Qualifications" class="form-label  ">Qualifications</label>
                             <input class="form-control form-control-lg" type="text" placeholder="Qualifications"
                                 aria-label=".form-control-sm example" id="qualifications">
+                                <div class="error-message" id="qualifications-error"></div>
                         </div>
                     </div>
 
@@ -286,12 +295,13 @@
                             <label for="last-name" class="form-label  ">Address</label>
                             <input class="form-control form-control-lg" type="text" placeholder="enter Address"
                                 aria-label=".form-control-sm example" id="address">
+                                <div class="error-message" id="address-error"></div>
                         </div>
                     </div>
 
                     <div class="row pt-4">
                         <div class="col-lg-6 col-sm-12">
-                            <label for="exampleInputEmail1" class="form-label  important">Country</label>
+                            <label for="exampleInputEmail1" class="form-label  ">Country</label>
                             <select class="form-select form-select-lg p-3" aria-label="Default select example"
                                 id="country">
                                 <option selected>select country</option>
@@ -300,7 +310,7 @@
                                 <option value="	United Kingdom">United Kingdom</option>
                                 <option value="CANADA">CANADA</option>
                             </select>
-
+                            <div class="error-message" id="country-error"></div>
                         </div>
                         <div class="col-lg-6 col-sm-12">
                             <label for="exampleInputEmail1" class="form-label fondspace">State</label>
@@ -323,6 +333,7 @@
                                 <option value="Maharashtra">Maharashtra</option>
                                 <option value="Uttar Pradesh">Uttar Pradesh</option>
                             </select>
+                            <div class="error-message" id="state-error"></div>
                         </div>
                     </div>
 
@@ -334,12 +345,13 @@
                             <label for="last-name" class="form-label ">City</label>
                             <input class="form-control form-control-lg" type="text" placeholder="enter city"
                                 aria-label=".form-control-sm example" id="city">
-
+                                <div class="error-message" id="city-error"></div>
                         </div>
                         <div class="col-lg-6">
                             <label for="last-name" class="form-label  fondspace">Pin/Zip</label>
                             <input class="form-control form-control-lg" type="text" placeholder="enter zip/pin"
                                 aria-label=".form-control-sm example" id="pinZip">
+                                <div class="error-message" id="pinZip-error"></div>
                         </div>
                     </div>
                     <section class="button">
@@ -405,7 +417,7 @@
                         <div class="addToastMainText">Success</div>
                     </div>
                     <div class="addToast-content">
-                        <div class="addToast-text">Success fully Added Employee.... </div>
+                        <div class="addToast-text"> Employee Added Successfully.... </div>
                     </div>
                 </div>
                 <button class="layer2" onclick="addemployeeCloseToast()">
@@ -425,7 +437,7 @@
                         <div class="deleteToastMainText">Success</div>
                     </div>
                     <div class="deleteToast-content">
-                        <div class="deleteToast-text">Success fully Deleted Employee.... </div>
+                        <div class="deleteToast-text">Employee  Deleted Successfully.... </div>
                     </div>
                 </div>
                 <button class="d-layer2" onclick="deleteEmployeeToastClose()">
@@ -444,7 +456,7 @@
                         <div class="editToastMainText">Success</div>
                     </div>
                     <div class="editToast-content">
-                        <div class="editToast-text">Success fully Edited Employee.... </div>
+                        <div class="editToast-text"> Employee Edited Successfully.... </div>
                     </div>
                 </div>
                 <button class="e-layer2" onclick="editEmployeeToastClose()">

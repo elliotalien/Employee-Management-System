@@ -494,7 +494,7 @@ button {
 /* Form Box Styles */
 .form-box {
     position: absolute;
-    top: 550px;
+    top: 590px;
     left: 50%;
     right: 50%;
     transform: translate(-50%, -50%) scale(0);
@@ -614,6 +614,7 @@ button {
     padding: 6px 12px;
     color: #000;
     font-weight: 600;
+    cursor: pointer;
 }
 
 .paginationbtn li.active {
@@ -631,9 +632,7 @@ button {
     color: #fff;
 }
 
-.employtable-data {
-    height: 100vh;
-}
+
 
 /* TOAST BOX STYLE (START) */
 
@@ -1042,4 +1041,13 @@ input::placeholder,
     font-weight: 500;
     line-height: 25px;
     letter-spacing: -0.28px;
+}
+
+.error-message{
+    font-size: 14px;
+    font-style: normal;
+    font-weight: 600;
+    line-height: 100%;
+    letter-spacing: -0.28px;
+    padding: 10px;
 }
